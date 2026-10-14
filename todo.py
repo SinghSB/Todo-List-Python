@@ -29,21 +29,37 @@ def addtask():
     savetasks()
     print("Task Added!" + "\n")
 
-#Function allowing the user to delete thier chosen task
+#Function allowing the user to delete thier chosen task, and added a try method to manage the error if the user tries to delete a task that doesn't exist or if the list is empty
 def deletetask():
-     tasknum = int(input("Enter the task number you'd like to remove: "))
-     todolist.pop(tasknum - 1)
-     savetasks()
-     print("Task has been deleted!")
+    try:
+        tasknum = int(input("Enter the task number you'd like to remove: "))
+        todolist.pop(tasknum - 1)
+        savetasks()
+        print("Task has been deleted!")
+    except IndexError:
+        print("Error: Task number does not exist or the list is empty.")
+
+def cleartasks():
+    confirmationmessage = input("Are you sure you want to clear ALL tasks? Enter 'yes' to confirm: ")
+    if confirmationmessage.lower() == "yes":
+        todolist.clear()
+        savetasks()
+        print("All tasks have been cleared!")
+    else:
+        print("Clear operation cancelled. Your tasks are safe. :)")
 
 #To ensure the app reopens with saved tasks from the past session
 loadtasks()
 
 #While and if loops to ensure the app runs until the user prompts to quit, and so python can run commands based on user's inputs
 userinput = ""
-while userinput != "4":
+while userinput != "5":
     print("\n" + "Singh's Todo List" + "\n")
-    print("Enter 1 to show all tasks" + "\n" + "Enter 2 to add a new task" + "\n" + "Enter 3 to delete a task" + "\n" + "Enter 4 to quit the app")
+    print("Enter 1 to show all tasks" + "\n" + 
+          "Enter 2 to add a new task" + "\n" + 
+          "Enter 3 to delete a task" + "\n" + 
+          "Enter 4 to clear all tasks" + "\n" + 
+          "Enter 5 to quit the app")
 
     userinput = input("Enter a number: ")
 
@@ -54,6 +70,8 @@ while userinput != "4":
     elif (userinput == "3"):
         deletetask()
     elif (userinput == "4"):
+        cleartasks()
+    elif (userinput == "5"):
         print("See you again!:)")
     else:
         print("Invalid input, please choose from the options below")
