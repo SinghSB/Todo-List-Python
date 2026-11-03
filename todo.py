@@ -33,11 +33,16 @@ def addtask():
 def deletetask():
     try:
         tasknum = int(input("Enter the task number you'd like to remove: "))
-        todolist.pop(tasknum - 1)
+        if tasknum < 1 or tasknum > len(todolist):
+            print("Error: Task number does not exist.")
+        else:
+            todolist.pop(tasknum - 1)
+            print("Task has been deleted!")
         savetasks()
-        print("Task has been deleted!")
     except IndexError:
         print("Error: Task number does not exist or the list is empty.")
+    except ValueError:
+        print("Error: Please enter a valid number.")
 
 def cleartasks():
     confirmationmessage = input("Are you sure you want to clear ALL tasks? Enter 'yes' to confirm: ")
@@ -61,7 +66,7 @@ while userinput != "5":
           "Enter 4 to clear all tasks" + "\n" + 
           "Enter 5 to quit the app")
 
-    userinput = input("Enter a number: ")
+    userinput = input("\n" + "Enter a number: ")
 
     if (userinput == "1"):
         showtasks()

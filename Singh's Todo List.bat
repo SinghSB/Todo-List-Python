@@ -1,2 +1,0 @@
-py todo.py
-pause
