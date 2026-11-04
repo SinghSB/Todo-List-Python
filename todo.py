@@ -28,9 +28,12 @@ def showtasks():
 #Function allowing the user to add new tasks
 def addtask():
     newtask = input("Enter a task: ")
-    todolist.append(newtask)
-    savetasks()
-    print("Task Added!" + "\n")
+    if (len(newtask.strip()) > 0):
+        todolist.append(newtask.strip())
+        savetasks()
+        print("\n" + "Task Added!" + "\n")
+    else:
+        print("\n" + "Error: Cannot input an empty task")
 
 #Function allowing the user to delete thier chosen task, and added a try method to manage the error if the user tries to delete a task that doesn't exist or if the list is empty
 def deletetask():
@@ -82,4 +85,4 @@ while userinput != "5":
     elif (userinput == "5"):
         print("See you again!:)")
     else:
-        print("Invalid input, please choose from the options below")
+        print("Invalid input, please choose from the options below:")
