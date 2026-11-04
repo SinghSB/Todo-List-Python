@@ -18,9 +18,12 @@ def loadtasks():
 
 #Function to display all the tasks added so far
 def showtasks(): 
-    print("\n" + "Your tasks: " + "\n")
-    for task in todolist:
-        print(task)
+    if (len(todolist) > 0):
+        print("\n" + "Your tasks: " + "\n")
+        for tasknum, task in enumerate(todolist, start=1):
+                print(f"{tasknum}. {task}")
+    else:
+        print("Your todo list is empty!")
 
 #Function allowing the user to add new tasks
 def addtask():
